@@ -1,0 +1,3086 @@
+{
+	"info": {
+		"_postman_id": "d0fc646a-7c3f-4aca-accb-885e84db2322",
+		"name": "PetStore-Project",
+		"description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.\n\nContact Support:\n Email: apiteam@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28893001",
+		"_collection_link": "https://www.postman.com/restless-meadow-246176/workspace/pet-store/collection/28893001-d0fc646a-7c3f-4aca-accb-885e84db2322?action=share&source=collection_link&creator=28893001"
+	},
+	"item": [
+		{
+			"name": "1-Pet",
+			"item": [
+				{
+					"name": "1.1 AddNewPet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Check Status Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Check response Schema contain property An Object\r",
+									"pm.test('[1.Pet].[1.1 AddNewPet].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');});\r",
+									"\r",
+									"//Check response Schema contain property An array\r",
+									"pm.test('[1.Pet].[1.1 AddNewPet].2.Check photoUrls an array',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).photoUrls).to.be.an('array');\r",
+									"})  \r",
+									"\r",
+									"//Check response Schema contain tags an array\r",
+									"pm.test('[1.Pet].[1.1 AddNewPet].3.Check tags an array',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).tags).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"//Check response Schema  contain property id\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].4.Check response Schema contain property id', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('id');  \r",
+									"});\r",
+									"\r",
+									"//Check response Schema  contain property category\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].5.Check response Schema contain property category', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('category');\r",
+									"});\r",
+									"\r",
+									"//Check response Schema  contain property tags\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].6.Check response Schema contain property tags', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('tags');\r",
+									"});\r",
+									"\r",
+									"//Check response Schema  contain property photoUrls\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].7.Check response Schema contain property photoUrls ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('photoUrls');\r",
+									"})\r",
+									"\r",
+									"//Check response Schema  contain property status\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].8.Check response Schema contain property status', function () {\r",
+									"     pm.expect(JSON.parse(responseBody)).to.have.property('status');\r",
+									"})\r",
+									"\r",
+									"//Check pet id is a number\r",
+									"pm.test(\"[1.Pet].[1.1AddNewPet].9.Check pet id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).id).to.be.a('number');\r",
+									"});   \r",
+									"\r",
+									"//Check pet id is greaterThan 13\r",
+									"pm.test(\"[1.Pet].[1.1AddNewPet].10.Check pet id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.be.greaterThan(13);\r",
+									"});\r",
+									"//Check pet id is  not contail letters \r",
+									"pm.test(\"[1.Pet].[1.1AddNewPet].11.Check pet id not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"//Check id not null\r",
+									"pm.test(\"[1.Pet].[1.1AddNewPet].12.Check ID not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.equal(null);\r",
+									"});   \r",
+									"\r",
+									"//Check id not undefined  \r",
+									"pm.test(\"[1.Pet].[1.1AddNewPet].13.Check ID not undefined\",function (){\r",
+									"        pm.expect(JSON.parse(responseBody).id).to.not.equal(undefined);\r",
+									"});\r",
+									"\r",
+									"//Check Name function not null\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].14.Check Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"//Check Name lenghth\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].15.Check Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].16.Check Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"//Check Name to match small letters\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].17.Check Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"//Check Name to not contain numbers\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].18.Check Name to not contain numbers or ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"\r",
+									"//Check response category contain property\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].19.Check response category contain property name',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('name');\r",
+									"});\r",
+									"\r",
+									"//Check response category contain property id\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].20.Check response category contain property id',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"//Check category id & name \r",
+									"pm.test('[1.Pet].[1.1AddNewPet].21.Check category will be an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.be.an('object')\r",
+									"})\r",
+									"\r",
+									"//Check category id not null\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].22.Check category id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"//Check category id greater than 2\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].23.Check category id greater than 2', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"\r",
+									"//Check category id to be within 100-1000\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].24.Check category id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"\r",
+									"//Check category id to be a number\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].25.Check category id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.a('Number');\r",
+									"});\r",
+									"\r",
+									"//Check category id not contain letters\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].26.Check category id not contain letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"//Check Category Name not null\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].27.Check Category Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"//Check Category Name lenghth\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].28.Check Category Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"\r",
+									"//Check Category Name to be string\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].29.Check Category Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).category.name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"//Check Category Name to match small letters\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].30.Check Category Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.match(/[a-z]/);\r",
+									"});\r",
+									"//Check Category Name to not contain numbers \r",
+									"pm.test('[1.Pet].[1.1AddNewPet].31.Check Category Name to not contain numbers or', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"\r",
+									"//Check response tags contain property\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].32.Check response tags contain property name', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('name');\r",
+									"});\r",
+									"\r",
+									"//Check response tags contain property id\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].33.Check response tags contain property id', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"//Check tags id & name\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].34.Check tags an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.be.an('object')\r",
+									"});\r",
+									"\r",
+									"//Check tags id not null\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].35.Check tags id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.equal(null);\r",
+									"});\r",
+									"//Check tags id greaterthan 2\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].36.Check tags id greaterthan 2 ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"//Check tags id to be within 100-1000\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].37.Check tags id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].38.Check tags id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.a('Number');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].39.Check tags id to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].40.Check tags Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].41.Check tags Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].42.Check tags Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).tags[0].name)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].43.Check tags Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.match(/[a-z]/);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].44.Check tags Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"//Check PhotoUrl is URL\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].45.Check tags Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].46.Check PhotoUrl is URL', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).photoUrls[0]).to.match(/^https?:\\/\\/\\S+$/);\r",
+									"});\r",
+									"\r",
+									"//Check status not null\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].47.Check status not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].48.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].49.Check status response', function (){\r",
+									"  pm.expect(JSON.parse(responseBody).status).to.be.oneOf(['sold', 'available', 'unavailable']);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.1AddNewPet].50.Check status to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).status)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"//save category \r",
+									"pm.collectionVariables.set(\"categoryName\",JSON.parse(request.data).category.name)\r",
+									"pm.collectionVariables.set(\"status\",JSON.parse(request.data).status)\r",
+									"pm.collectionVariables.set(\"PHOTOURL\", JSON.parse(request.data).photoUrls)\r",
+									"pm.collectionVariables.set(\"NAME\", JSON.parse(request.data).name)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateID() {\r",
+									"  return Math.floor(Math.random() * (1000 - 100 + 1) + 100);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CTID\",generateID())\r",
+									"pm.collectionVariables.set(\"TAGID\",generateID())\r",
+									"\r",
+									"function randomName() {\r",
+									"   var nameLength = Math.floor(Math.random() * 3) + 8; // \r",
+									"   var name = '';\r",
+									"   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';\r",
+									"\r",
+									"   for (var i = 0; i < nameLength; i++) {\r",
+									"       name += characters.charAt(Math.floor(Math.random() * characters.length));\r",
+									"   }\r",
+									"\r",
+									"   return name;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CTNAME\",randomName())\r",
+									"pm.collectionVariables.set(\"PHNAME\",randomName())\r",
+									"pm.collectionVariables.set(\"TAGNAME\",randomName())\r",
+									"\r",
+									"function randomStatus() {\r",
+									"    var status = ['available', 'unavailable'];\r",
+									"    var randomIndex = Math.floor(Math.random() * status.length);\r",
+									"\r",
+									"    return status[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"status\",randomStatus())\r",
+									"\r",
+									"function randomPhotoUrl() {\r",
+									"    var photoUrls = [\r",
+									"        'https://i.imgur.com/Xz223S9.png',\r",
+									"        'https://i.imgur.com/21CMPvD.png',\r",
+									"        'https://i.imgur.com/pftwaw2.png',\r",
+									"    ];\r",
+									"    var randomIndex = Math.floor(Math.random() * photoUrls.length);\r",
+									"\r",
+									"    return photoUrls[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"rphoto\",randomPhotoUrl())\r",
+									"\r",
+									"// 1/11/1997\r",
+									"function generateRandomDate() {\r",
+									" var minDate = new Date(\"1/11/1997\");\r",
+									" var maxDate = new Date(\"12/31/1999\");\r",
+									"\r",
+									" var randomDate = new Date(Math.random() * (maxDate - minDate) + minDate.getTime());\r",
+									"\r",
+									" var day = randomDate.getDate();\r",
+									" var month = randomDate.getMonth() + 1;\r",
+									" var year = randomDate.getFullYear();\r",
+									"\r",
+									" return day + '/' + month + '/' + year;\r",
+									"}\r",
+									"console.log(generateRandomDate());\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{PetID}},\n  \"category\": {\n    \"id\": {{CTID}},\n    \"name\": \"{{CTNAME}}\"\n  },\n  \"name\": \"{{PHNAME}}\",\n  \"photoUrls\": [\n    \"{{rphoto}}\"\n  ],\n  \"tags\": [\n    {\n      \"id\": {{TAGID}},\n      \"name\": \"{{TAGNAME}}\"\n    }\n  ],\n  \"status\": \"{{status}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 Upload image",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Check response Schema have Key massage\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"//Check response Schema have Key type\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"//Check response Schema have Key code\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"\r",
+									"//Check property not null    \r",
+									"pm.test(\"[1.pet].[1.2 UploadPetimage].4.Check Code not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).Code).to.not.equal(null);\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[1.pet].[1.2 UploadPetimage].5.Check type not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[1.pet].[1.2 UploadPetimage].6.Check message not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"//Check Code contain number\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].7.Check code response is  a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.be.a('Number');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].8.Check code not contain letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"//check type Is String\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].9.Check type to be a string', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//Check message Is String\r",
+									"pm.test('[1.pet].[1.2 UploadPetimage].10.Check message to be string', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.be.a('string');\r",
+									"});\r",
+									"//Check Status Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "additionalMetadata",
+									"value": "String",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"contentType": "image/jpeg",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/5-23.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{PetID}}/uploadImage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{PetID}}",
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.3 put",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateID() {\r",
+									"  return Math.floor(Math.random() * (1000 - 100 + 1) + 100);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CTID_update\",generateID())\r",
+									"pm.collectionVariables.set(\"TAGID_update\",generateID())\r",
+									"\r",
+									"function randomStatus() {\r",
+									"    var status = ['available', 'sold' , 'pending'];\r",
+									"    var randomIndex = Math.floor(Math.random() * status.length);\r",
+									"\r",
+									"    return status[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"status_update\",randomStatus())\r",
+									"\r",
+									"function generateRandomName() {\r",
+									"    var length = Math.floor(Math.random() * 3) + 8;\r",
+									"    var result = '';\r",
+									"    var characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    var charactersLength = characters.length;\r",
+									"    for ( var i = 0; i < length; i++ ) {\r",
+									"        result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CATName_update\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"TagName_update\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"DogName_update\", generateRandomName());\r",
+									"\r",
+									"function generateRandomPhotoUrl() {\r",
+									"    var width = Math.floor(Math.random() * 1000) + 100;\r",
+									"    var height = Math.floor(Math.random() * 1000) + 100;\r",
+									"    var url = \"https://picsum.photos/\" + width + \"/\" + height;\r",
+									"    return url;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"URLS_update\", generateRandomPhotoUrl());\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"//check request body type-----------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].2.Check photoUrls an array',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).photoUrls).to.be.an('array');\r",
+									"\r",
+									"})    \r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].3.Check tags an array',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).tags).to.be.an('array');\r",
+									"});\r",
+									"//check response body schema----------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].4.Check response Schema contain property id', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('id');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].5.Check response Schema contain property category', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('category');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].6.Check response Schema contain property tags', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('tags');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].7.Check response Schema contain property photoUrls ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('photoUrls');\r",
+									"})\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].8.Check response Schema contain property status', function () {\r",
+									"     pm.expect(JSON.parse(responseBody)).to.have.property('status');\r",
+									"})\r",
+									"//check pet id------------------------------------------------------------------------------------\r",
+									"pm.test(\"[1.Pet].[1.3 UpdatePet].9.Check pet id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).id).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[1.Pet].[1.3 UpdatePet].10.Check pet id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.be.greaterThan(13);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[1.Pet].[1.3 UpdatePet].11.Check pet id not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check id---------------------------------------------------------------------------------------\r",
+									"pm.test(\"[1.Pet].[1.3 UpdatePet].12.Check ID not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.equal(null);\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[1.Pet].[1.3 UpdatePet].13.Check ID not undefined\",function (){\r",
+									"        pm.expect(JSON.parse(responseBody).id).to.not.equal(undefined);\r",
+									"});\r",
+									"//check name------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].14.Check Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].15.Check Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].16.Check Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].17.Check Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].18.Check Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"//check category-------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].19.Check response category contain property name',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('name');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].20.Check response category contain property id',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].21.Check category will be an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.be.an('object')\r",
+									"})\r",
+									"//check category id---------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].22.Check category id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].23.Check category id greater than 2', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].24.Check category id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].25.Check category id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.a('Number');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].26.Check category id not contain letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check category name---------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].27.Check Category Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].28.Check Category Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].29.Check Category Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).category.name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].30.Check Category Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].31.Check Category Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"//check tags-------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].32.Check response tags contain property name', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('name');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].33.Check response tags contain property id', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].34.Check tags an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.be.an('object')\r",
+									"\r",
+									"});\r",
+									"//check tags id-----------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].35.Check tags id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].36.Check tags id greaterthan 2 ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].37.Check tags id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].38.Check tags id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.a('Number');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].39.Check tags id to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check tags name-----------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].40.Check tags Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].41.Check tags Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].42.Check tags Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).tags[0].name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].43.Check tags Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].44.Check tags Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"\r",
+									"//check photo url---------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].45.Check PhotoUrl is URL', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).photoUrls[0]).to.match(/^https?:\\/\\/\\S+$/);\r",
+									"});\r",
+									"//check status-------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].46.Check status not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].47.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].48.Check status response', function (){\r",
+									"  pm.expect(JSON.parse(responseBody).status).to.be.oneOf(['sold', 'available', 'pending']);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.3 UpdatePet].49.Check status to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).status)).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{PetID}},\r\n  \"category\": {\r\n    \"id\": {{CTID_update}},\r\n    \"name\": \"{{CATName_update}}\"\r\n  },\r\n  \"name\": \"{{DogName_update}}\",\r\n  \"photoUrls\": [\r\n    \"{{URLS_update}}\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{TAGID_update}},\r\n      \"name\": \"{{TagName_update}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{status_update}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.4 Find pet by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check Tags--------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].01.Check response tags contain property name', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('name');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].02.Check response tags contain property id', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.have.property('id');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].03.Check tags an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0]).to.be.an('object')\r",
+									"\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].04.Check tags id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].05.Check tags id greaterthan 2 ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].06.Check tags id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].07.Check tags id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.be.a('Number');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].08.Check tags id to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].09.Check tags Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].10.Check tags Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].11.Check tags Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).tags[0].name)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].12.Check tags Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.match(/[a-z]/);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].13.Check tags Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).tags[0].name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"\r",
+									"//Check photourl---------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].14.Check PhotoUrl is URL', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).photoUrls[0]).to.match(/^https?:\\/\\/\\S+$/);\r",
+									"});\r",
+									"\r",
+									"// Check Status---------------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].15.Check status not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].16.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].17.Check status response', function (){\r",
+									"  pm.expect(JSON.parse(responseBody).status).to.be.oneOf(['sold', 'available', 'unavailable']);\r",
+									"});\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].18.Check status to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).status)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"//Check Category--------------------------------------------------------------------------------------\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].19.Check response category contain property name',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('name');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].20.Check response category contain property id',function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].21.Check category will be an object',function(){\r",
+									"    pm.expect(JSON.parse(responseBody).category).to.have.be.an('object')\r",
+									"})\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].22.Check category id not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].23.Check category id greater than 2', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id.toString().length).to.be.greaterThan(2);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].24.Check category id to be within 100-1000', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.within(100 ,1000);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].25.Check category id to be a number', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.be.a('Number');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].26.Check category id not contain letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].27.Check Category Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].28.Check Category Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].29.Check Category Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).category.name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].30.Check Category Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.4FindByPetID].31.Check Category Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).category.name).to.not.match(/[0-9]/);\r",
+									"});\r",
+									"//-------------------------------------------------------------------------------------------\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{PetID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{PetID}}"
+							]
+						},
+						"description": "Returns a single pet"
+					},
+					"response": []
+				},
+				{
+					"name": "1.5 Finds Pets by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"[1.Pet].[1.5FindbyStatus].3.Check ID not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.equal(null);\r",
+									"});    \r",
+									"//check name--------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].4.Check Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].5.Check Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).name)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].5.Check Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.match(/[a-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].6.Check Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).name).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"//check status---------------------------------------------------------------------------------\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].7.Check status not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].8.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"\r",
+									"pm.test('[1.Pet].[1.5FindbyStatus].9.Check status to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).status)).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/findByStatus?status={{status}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{status}}",
+									"description": "(Required) Status values that need to be considered for filter"
+								},
+								{
+									"key": "status",
+									"value": "available",
+									"description": "(Required) Status values that need to be considered for filter",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Multiple status values can be provided with comma separated strings"
+					},
+					"response": []
+				},
+				{
+					"name": "1.6 Deletes a pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"//Check response Schema--------------------------------------------------------------------------\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"//Check Message-----------------------------------------------------------------------------------\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].4.Check message to contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.match(/[0-9]/);\r",
+									"});\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].5.Check message greaterThan 13  ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message.length).to.be.greaterThan(13);\r",
+									"})\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].6.Check message not contail letters  ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.match(/[A-Za-z]/);\r",
+									"})\r",
+									"//Check response not null--------------------------------------------------------------------------\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].7.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].8.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].9.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code---------------------------------------------------------------------------------------\r",
+									"pm.test('[1.pet].[1.6 Delete(ID)].10.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/{{PetID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"{{PetID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"function generate(){}",
+							"pm.collectionVariables.set(\"create\",generate())",
+							"pm.collectionVariables.set(\"update\",generate())"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2-Store",
+			"item": [
+				{
+					"name": "2.1 Place an order for a pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('orderid',JSON.parse(responseBody).id);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].2.Check response Schema contain property id', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('id');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].3.Check response Schema contain petID', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('petId');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].4.Check response Schema contain property quantity', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('quantity');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].5.Check response Schema contain property shipdate', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('shipDate');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].6.Check response Schema contain property status', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('status');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].7.Check response Schema contain property complete', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('complete');  \r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].8.Check pet id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).petId).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].9.Check pet id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.be.greaterThan(13);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].10.Check pet id not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].11.Check id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).id).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].12.Check id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.be.greaterThan(13);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].13.Check id not contain letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].14.Check quantity is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).quantity).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].15.Check quantity equal 2 digits  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity.toString()).to.match(/^\\d{1}$/);;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.1AddNewStore].16.Check quantity not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].17.Check ID not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[1.Pet].[2.1AddNewPet].18.Check petId not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[1.Pet].[2.1AddNewPet].19.Check quantity not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[1.Pet].[2.1AddNewPet].20.Check shipDate not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).shipDate).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[1.Pet].[2.1AddNewPet].21.Check status not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[1.Pet].[2.1AddNewPet].22.Check complete not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).complete).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test('[2.Store].[2.1AddNewStore].23.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Function to generate a random integer between min and max (inclusive)\r",
+									"function getRandomInt(min, max) {\r",
+									"    return Math.floor(Math.random() * (max - min + 1)) + min;\r",
+									"}\r",
+									"\r",
+									"// Function to generate a random boolean value\r",
+									"function getRandomBoolean() {\r",
+									"    return Math.random() < 0.5;\r",
+									"}\r",
+									"\r",
+									"// Function to generate the request body\r",
+									"function generateRequestBody() {\r",
+									"    const id = \"0\"; // Assuming a constant value for id\r",
+									"    const petId = pm.environment.get(\"petID\"); // Assuming you have set petId in the environment\r",
+									"    const quantity = getRandomInt(1, 10); // Adjust the range as needed\r",
+									"    const shipDate = new Date().toISOString();\r",
+									"    const status = \"delivered\";\r",
+									"    const complete = getRandomBoolean();\r",
+									"\r",
+									"    // Set the request body with dynamic values\r",
+									"    pm.request.body.raw = JSON.stringify({\r",
+									"        \"id\": id,\r",
+									"        \"petId\": petId,\r",
+									"        \"quantity\": quantity,\r",
+									"        \"shipDate\": shipDate,\r",
+									"        \"status\": status,\r",
+									"        \"complete\": complete\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Call the function to generate the request body\r",
+									"generateRequestBody();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": id,\n        \"petId\": petId,\n        \"quantity\": quantity,\n        \"shipDate\": shipDate,\n        \"status\": status,\n        \"complete\": complete\n    }",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/store/order",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 Get By Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"//check response body type-------------------------------------------------------------------------\r",
+									"pm.test('[2.Store].[2.2GetOrder].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');\r",
+									"});\r",
+									"//check response schema property--------------------------------------------------------------------\r",
+									"pm.test('[2.Store].[2.2GetOrder].2.Check response Schema contain property id', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('id');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].3.Check response Schema contain petID', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('petId');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].4.Check response Schema contain property quantity', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('quantity');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].5.Check response Schema contain property shipdate', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('shipDate');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].6.Check response Schema contain property status', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('status');  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].7.Check response Schema contain property complete', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('complete');  \r",
+									"});\r",
+									"//check pet id--------------------------------------------------------------------------------------\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].8.Check pet id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).petId).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].9.Check pet id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.be.greaterThan(13);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].10.Check pet id not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check id---------------------------------------------------------------------------------------------\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].11.Check id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).id).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].12.Check id greaterThan 13  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.be.greaterThan(13);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].13.Check id not contain letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check quantity------------------------------------------------------------------------------------\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].14.Check quantity is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).quantity).to.be.a('number');\r",
+									"});    \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].15.Check quantity equal 2 digits  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity.toString()).to.match(/^\\d{2}$/);;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].16.Check quantity not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check responses not null ---------------------------------------------------------------------------\r",
+									"pm.test('[2.Store].[2.2GetOrder].17.Check ID not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].18.Check petId not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].19.Check quantity not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).quantity).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].20.Check shipDate not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).shipDate).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].21.Check status not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(null);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"[2.Store].[2.2GetOrder].22.Check complete not null\",function (){\r",
+									"    pm.expect(JSON.parse(responseBody).complete).to.not.equal(null);\r",
+									"}); \r",
+									"//check status----------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store].[2.2GetOrder].23.Check status not contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).status).to.not.equal(Number);\r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store].[2.2GetOrder].24.Check status response', function (){\r",
+									"  pm.expect(JSON.parse(responseBody).status).to.be.oneOf(['sold', 'commingsoon', 'placed']);\r",
+									"});\r",
+									"//check shipdate--------------------------------------------------------------------------------------\r",
+									"\r",
+									"//check boolean---------------------------------------------------------------------------------------\r",
+									"pm.test(\"[2-store].[2.2GetOrder].26-Check Complete true or false\" , function(){\r",
+									"    pm.expect(JSON.parse(responseBody).complete).to.be.a('boolean')\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/store/order/{{orderid}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{orderid}}"
+							]
+						},
+						"description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions"
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 Delete purchase order by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/store/order/{{orderid}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{orderid}}"
+							]
+						},
+						"description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors"
+					},
+					"response": []
+				},
+				{
+					"name": "2.4 Returns  By Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Check response Body\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');});\r",
+									"//Check Schema property------------------------------------------------------------------------------\r",
+									" pm.test('[2.Store][2.4 Returns  By Status].2.Check response Schema contain property Sold', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('sold');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].3.Check response Schema contain property unknow', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('unknow');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].4.Check response Schema contain property asd', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('asd');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].5.Check response Schema contain property string', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('string');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].6.Check response Schema contain property unavailable', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('unavailable');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].7.Check response Schema contain property pending', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('pending');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].8.Check response Schema contain property available', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('available');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].9.Check response Schema contain property awaiable', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('awaiable');  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].10.Check response Schema contain property peric', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('peric');  \r",
+									"});   \r",
+									"   \r",
+									"//Check responses not null---------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].11.Check response Sold not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).sold).to.not.equal(null);  \r",
+									"});   \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].12.Check response unknow not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).unknow).to.not.equal(null);  \r",
+									"});  \r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].13.Check response asd not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).asd).to.not.equal(null);  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].14.Check response string not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).string).to.not.equal(null);  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].15.Check response unavailable not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).unavailable).to.not.equal(null);  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].16.Check response available not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).available).to.not.equal(null);  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].17.Check response awaiable not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).awaiable).to.not.equal(null);  \r",
+									"});\r",
+									"\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].18.Check response peric not null', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).peric).to.not.equal(null);  \r",
+									"});\r",
+									"//check sold ----------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].19.Check sold is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).sold).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].20.Check sold  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).petId).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"//check know -----------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].21.Check unknow is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).unknow).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].22.Check unknow  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).unknow).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check asd------------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].23.Check asd is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).asd).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].24.Check asd  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).asd).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check string----------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].25.Check string is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).string).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].26.Check string  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).string).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check unavailable-------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].27.Check unavailable is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).unavailable).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].28.Check unavailable  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).unavailable).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check available---------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].29.Check available is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).available).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].30.Check available  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).available).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check awaiable---------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].31.Check awaiable is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).awaiable).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].32.Check awaiable  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).awaiable).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check peric-------------------------------------------------------------------------------------------\r",
+									"pm.test('[2.Store][2.4 Returns  By Status].33.Check peric is a number'), function(){\r",
+									"    pm.expect(JSON.parse(responseBody).peric).to.be.a('Number')\r",
+									"}\r",
+									"\r",
+									"pm.test(\"[2.Store].[2.4 Returns  By Status].34.Check peric  not contain letters\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).peric).to.not.match(/[A-Za-z]/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/store/inventory?={{status}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"inventory"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "{{status}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3-User",
+			"item": [
+				{
+					"name": "3.1 Creates list of users with given input array",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateRandomName() {\r",
+									"    var length = Math.floor(Math.random() * 3) + 8;\r",
+									"    var result = '';\r",
+									"    var characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    var charactersLength = characters.length;\r",
+									"    for ( var i = 0; i < length; i++ ) {\r",
+									"        result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"USER\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"FIRST\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"LAST\", generateRandomName());\r",
+									"\r",
+									"function generateRandomId() {\r",
+									" return Math.floor(Math.random() * 901) + 100;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"USERID\",generateRandomId());\r",
+									"pm.collectionVariables.set(\"USERSt\",generateRandomId());\r",
+									"\r",
+									"function generateRandomEmail() {\r",
+									"    const name = Math.random().toString(36).substring(2, 12);\r",
+									"    const domain = Math.random().toString(36).substring(2, 8);\r",
+									"    const emailExtension = ['com', 'net', 'org'][Math.floor(Math.random() * 3)];\r",
+									"    return `${name}@${domain}.${emailExtension}`;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"MAIL\",generateRandomEmail());\r",
+									"\r",
+									"function generateRandomPassword() {\r",
+									"    const length = Math.floor(Math.random() * 8) + 8; // Password length will be a random number between 8 and 15\r",
+									"    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';\r",
+									"    let password = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        password += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return password;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Pass\",generateRandomPassword());\r",
+									"\r",
+									"function generateRandomPhone() {\r",
+									"    const length = 11;\r",
+									"    const charset = '0123456789';\r",
+									"    let phone = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        phone += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return phone;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"PHONE\",generateRandomPhone());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"//Check response Schema\r",
+									"pm.test('[3.User].[3.1 Create with Array].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"pm.test('[3.User].[3.1 Create with Array].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"pm.test('[3.User].[3.1 Create with Array].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"//Check Message\r",
+									"pm.test('[3.User].[3.1 Create with Array].4.Check message to contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.equal('ok');\r",
+									"});\r",
+									"//Check response not null\r",
+									"pm.test('[3.User].[3.1 Create with Array].5.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.1 Create with Array].6.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.1 Create with Array].7.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code\r",
+									"pm.test('[3.User].[3.1 Create with Array].8.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check type is a string---------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.1 Create with Array].9.Check type is a number', function(){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"id\": {{USERID}},\n    \"username\": \"{{USER}}\",\n    \"firstName\": \"{{FIRST}}\",\n    \"lastName\": \"{{LAST}}\",\n    \"email\": \"{{MAIL}}\",\n    \"password\": \"{{Pass}}\",\n    \"phone\": \"{{PHONE}}\",\n    \"userStatus\": {{USERSt}}\n  }\n]",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/createWithArray",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.2 Creates list of users with given input array",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateRandomName() {\r",
+									"    var length = Math.floor(Math.random() * 3) + 8;\r",
+									"    var result = '';\r",
+									"    var characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    var charactersLength = characters.length;\r",
+									"    for ( var i = 0; i < length; i++ ) {\r",
+									"        result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"UserN\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"FirstN\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"LastN\", generateRandomName());\r",
+									"\r",
+									"function generateRandomId() {\r",
+									" return Math.floor(Math.random() * 901) + 100;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"UseRID\",generateRandomId());\r",
+									"pm.collectionVariables.set(\"UseRSt\",generateRandomId());\r",
+									"\r",
+									"function generateRandomEmail() {\r",
+									"    const name = Math.random().toString(36).substring(2, 12);\r",
+									"    const domain = Math.random().toString(36).substring(2, 8);\r",
+									"    const emailExtension = ['com', 'net', 'org'][Math.floor(Math.random() * 3)];\r",
+									"    return `${name}@${domain}.${emailExtension}`;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"EMAIL\",generateRandomEmail());\r",
+									"\r",
+									"function generateRandomPassword() {\r",
+									"    const length = Math.floor(Math.random() * 8) + 8; // Password length will be a random number between 8 and 15\r",
+									"    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';\r",
+									"    let password = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        password += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return password;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Code\",generateRandomPassword());\r",
+									"\r",
+									"function generateRandomPhone() {\r",
+									"    const length = 11;\r",
+									"    const charset = '0123456789';\r",
+									"    let phone = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        phone += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return phone;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Content\",generateRandomPhone());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"//Check response Schema\r",
+									"pm.test('[3.User].[3.2 Create with Array].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"pm.test('[3.User].[3.2 Create with Array].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"pm.test('[3.User].[3.2 Create with Array].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"//Check Message\r",
+									"pm.test('[3.User].[3.2 Create with Array].4.Check message to contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.equal('ok');\r",
+									"});\r",
+									"//Check response not null\r",
+									"pm.test('[3.User].[3.2 Create with Array].5.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.2 Create with Array].6.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.2 Create with Array].7.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code\r",
+									"pm.test('[3.User].[3.2 Create with Array].8.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//check type is a string---------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.2 Create with Array].9.Check type is a number', function(){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"id\": {{UseRID}},\n    \"username\": \"{{UserN}}\",\n    \"firstName\": \"{{FirstN}}\",\n    \"lastName\": \"{{LastN}}\",\n    \"email\": \"{{EMAIL}}\",\n    \"password\": \"{{Code}}\",\n    \"phone\": \"{{Content}}\",\n    \"userStatus\": {{UseRSt}}\n  }\n]",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/createWithList",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.3 Get user by user name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].1.Check response body an object', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.be.an('object');\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].2.Check response Schema contain property id', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('id');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].3.Check response Schema contain username', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('username');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].4.Check response Schema contain property firstName', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('firstName');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].5.Check response Schema contain property lastName', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('lastName');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].6.Check response Schema contain property email', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('email');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].7.Check response Schema contain property password', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('password');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].8.Check response Schema contain property phone', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('phone');  \r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].9.Check response Schema contain property userStatus', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('userStatus');  \r",
+									"});\r",
+									"\r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].10.Check userStatus is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).userStatus).to.be.a('number');\r",
+									"});    \r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].11.Check userStatus greaterThan 2  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).userStatus).to.be.greaterThan(2);\r",
+									"});\r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].12.Check userStatus not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).userStatus).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].13.Check id is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).id).to.be.a('number');\r",
+									"});    \r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].14.Check id greaterThan 2  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.be.greaterThan(2);\r",
+									"});\r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].15.Check id not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).id).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].16.Check phone is a number \",function(){\r",
+									"     pm.expect(JSON.parse(responseBody).phone).to.match(/[0-9]/);\r",
+									"});    \r",
+									"pm.test(\"[3.User].[3.3 Get User By UserName].17.Check phone not contail letters  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).phone).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"pm.test(\"[2.User].[1.1AddNewStore].18.Check phone match 11  \",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).phone.toString()).to.match(/^\\d{11}$/);;\r",
+									"})\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].19.Check Name not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).username).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].20.Check Name lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).username.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].21.Check Name to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).username)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].22.Check Name to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).username).to.match(/[a-z]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].23.Check Name to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).username).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].24.Check firstName not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).firstName).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].25.Check firstName lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).firstName.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].26.Check firstName to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).firstName)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].27.Check firstName to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).firstName).to.match(/[a-z]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].28.Check firstName to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).firstName).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].29.Check lastName not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).lastName).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].30.Check lastName lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).lastName.length).to.be.within(8 ,10);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].31.Check lastName to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).lastName)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].32.Check lastName to match small letters', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).lastName).to.match(/[a-z]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].33.Check lastName to not contain numbers or A-Z', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).lastName).to.not.match(/[0-9A-Z]/);\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].34.Check email ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).email).to.match(/[0-9A-Za-z][@]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].35.Check email to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).email)).to.be.a('string');\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].36.Check email not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).email).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].37.Check password ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).password).to.match(/[0-9A-Za-z][!@#$%^&*]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].38.Check password not null', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).password).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.3 Get User By UserName].39.Check password lenghth', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).password.length).to.be.within(8 ,15);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/{{User}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{User}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.4 Updated user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateRandomName() {\r",
+									"    var length = Math.floor(Math.random() * 3) + 8;\r",
+									"    var result = '';\r",
+									"    var characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    var charactersLength = characters.length;\r",
+									"    for ( var i = 0; i < length; i++ ) {\r",
+									"        result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"UserName\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"FirstNA\", generateRandomName());\r",
+									"pm.collectionVariables.set(\"LastNA\", generateRandomName());\r",
+									"\r",
+									"function generateRandomId() {\r",
+									" return Math.floor(Math.random() * 901) + 100;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"UserStatus\",generateRandomId());\r",
+									"\r",
+									"function generateRandomEmail() {\r",
+									"    const name = Math.random().toString(36).substring(2, 12);\r",
+									"    const domain = Math.random().toString(36).substring(2, 8);\r",
+									"    const emailExtension = ['com', 'net', 'org'][Math.floor(Math.random() * 3)];\r",
+									"    return `${name}@${domain}.${emailExtension}`;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Mail\",generateRandomEmail());\r",
+									"\r",
+									"function generateRandomPassword() {\r",
+									"    const length = Math.floor(Math.random() * 8) + 8; // Password length will be a random number between 8 and 15\r",
+									"    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';\r",
+									"    let password = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        password += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return password;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Secured\",generateRandomPassword());\r",
+									"\r",
+									"function generateRandomPhone() {\r",
+									"    const length = 11;\r",
+									"    const charset = '0123456789';\r",
+									"    let phone = '';\r",
+									"    for (let i = 0, n = charset.length; i < length; ++i) {\r",
+									"        phone += charset.charAt(Math.floor(Math.random() * n));\r",
+									"    }\r",
+									"    return phone;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Call\",generateRandomPhone());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.collectionVariables.set('UserID',JSON.parse(responseBody).message);\r",
+									"\r",
+									"//Check response Schema\r",
+									"pm.test('[3.User].[3.4 Update User].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"pm.test('[3.User].[3.4 Update User].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"pm.test('[3.User].[3.4 Update User].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"//Check Message\r",
+									"pm.test('[3.User].[3.4 Update User].4.Check message to contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.match(/[0-9]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.4 Update User].5.Check message greaterThan 2  ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message.length).to.be.greaterThan(2);\r",
+									"})\r",
+									"pm.test('[3.User].[3.4 Update User].6.Check message not contail letters  ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.match(/[A-Za-z]/);\r",
+									"})\r",
+									"//Check response not null\r",
+									"pm.test('[3.User].[3.4 Update User].7.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.4 Update User].8.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.4 Update User].9.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code\r",
+									"pm.test('[3.User].[3.4 Update User].10.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{UserID}},\n  \"username\": \"{{UserName}}\",\n  \"firstName\": \"{{FirstNA}}\",\n  \"lastName\": \"{{LastNA}}\",\n  \"email\": \"{{Mail}}\",\n  \"password\": \"{{Secured}}\",\n  \"phone\": \"{{Call}}\",\n  \"userStatus\": {{UserStatus}}\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/{{User}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{User}}"
+							]
+						},
+						"description": "This can only be done by the logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "3.5 Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"//Check response Schema\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"})\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"})\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"})\r",
+									"//Check Message\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].4.Check message to be string', function (){\r",
+									"    pm.expect(String(JSON.parse(responseBody).message)).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"//Check response not null\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].5.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].6.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].7.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code\r",
+									"pm.test('[3.USER].[3.5 Delete(user)].8.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/{{User}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{User}}"
+							]
+						},
+						"description": "This can only be done by the logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "3.6 Logs user into the system",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//check response body contain code property \r",
+									"pm.test(\"[3.User][[3.7Login]2- Check respose schema contain code property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"code\")\r",
+									"});\r",
+									"//check code is not null\r",
+									"pm.test(\"[3.User][3.7Login]3- Check code is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(undefined)\r",
+									"});\r",
+									"//check code value is integer/number (data type)\r",
+									"pm.test(\"[3.User][3.7Login]4- Check code is number/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).code).to.be.equal('number')\r",
+									"});\r",
+									"//Check code value is 1 \r",
+									"pm.test(\"[3.User][3.7Login5-Check code value is 200 \", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.be.equal(200)\r",
+									"\r",
+									"});\r",
+									"//Check code length is less than 4 digit\r",
+									"pm.test(\"[3.User][3.7Login]6-Check code length is less than 4 digits \", function () {\r",
+									"    pm.expect((JSON.parse(responseBody).code).toString().length).to.be.lessThan(4)\r",
+									"});\r",
+									"//Check code is includes numbers only\r",
+									"pm.test(\"[3.User][3.7Login]7-Check code is includes numbers only\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.match(/^\\d+$/)\r",
+									"});\r",
+									"\r",
+									"//=================================================================================================\r",
+									"// ***** TCS for type  ******\r",
+									"\r",
+									"//(check response body contain type property \r",
+									"pm.test(\"[3.User][3.7Login]8- Check respose schema contain type property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"type\")\r",
+									"});\r",
+									"//check type is not null\r",
+									"pm.test(\"[3.User][3.7Login]9- Check type is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(undefined)\r",
+									"});\r",
+									"//check type value is stirng/number (data type)\r",
+									"pm.test(\"[3.User][3.7Login]10- Check type is string/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).type).to.be.equal('string')\r",
+									"});\r",
+									"//Check type value equal to unknown\r",
+									"pm.test(\"[3.User][3.7Login]11-Check type value equal to unknown \", function () {\r",
+									"    pm.expect( JSON.parse(responseBody).type).to.be.equal('unknown')\r",
+									"\r",
+									"});\r",
+									"//Check type is includes letters only\r",
+									"pm.test(\"[3.User][3.7Login]12-Check type is includes letters only\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.match(/^[a-zA-Z]+$/)\r",
+									"});\r",
+									"\r",
+									"//check response body contain message property \r",
+									"pm.test(\"[3.User][3.7Login]13- Check respose schema contain message property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"message\")\r",
+									"});\r",
+									"//check message is not null\r",
+									"pm.test(\"[3.User][3.7Login]14- Check message is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(undefined)\r",
+									"});\r",
+									"//check message value is string/number (data type)\r",
+									"pm.test(\"[3.User][3.7Login]15- Check message is string/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).message).to.be.equal('string')\r",
+									"});\r",
+									"//check message value is contain \"user session\"\r",
+									"pm.test(\"[3.User][3.7Login]16- Check message conaton user id  \", function () {\r",
+									"    pm.expect( JSON.parse(responseBody).message).to.contains(\"user session\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/login?username={{UserName}}&password={{password}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{UserName}}",
+									"description": "(Required) The user name for login"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "(Required) The password for login in clear text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.7 Logs out current logged in user session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//check status code is 200\r",
+									"pm.test(\"[3.User][[3.5Login]1- Status code is 2oo\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//check response body contain code property \r",
+									"pm.test(\"[3.User][[3.6Logout]2- Check respose schema contain code property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"code\")\r",
+									"});\r",
+									"//check code is not null\r",
+									"pm.test(\"[3.User][3.6Logout]3- Check code is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(undefined)\r",
+									"});\r",
+									"//check code value is integer/number (data type)\r",
+									"pm.test(\"[3.User][3.6Logout]4- Check code is number/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).code).to.be.equal('number')\r",
+									"});\r",
+									"//Check code value is 1 \r",
+									"pm.test(\"[3.User][3.6Logout5-Check code value is 200 \", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.be.equal(200)\r",
+									"\r",
+									"});\r",
+									"//Check code length is less than 4 digit\r",
+									"pm.test(\"[3.User][3.6Logout]6-Check code length is less than 4 digits \", function () {\r",
+									"    pm.expect((JSON.parse(responseBody).code).toString().length).to.be.lessThan(4)\r",
+									"});\r",
+									"//Check code is includes numbers only\r",
+									"pm.test(\"[3.User][3.6Logout]7-Check code is includes numbers only\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.match(/^\\d+$/)\r",
+									"});\r",
+									"\r",
+									"//(check response body contain type property \r",
+									"pm.test(\"[3.User][3.6Logout]8- Check respose schema contain type property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"type\")\r",
+									"});\r",
+									"//check type is not null\r",
+									"pm.test(\"[3.User][3.6Logout]9- Check type is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(undefined)\r",
+									"});\r",
+									"//check type value is stirng/number (data type)\r",
+									"pm.test(\"[3.User][3.6Logout]10- Check type is string/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).type).to.be.equal('string')\r",
+									"});\r",
+									"//Check type value equal to unknown\r",
+									"pm.test(\"[3.User][3.6Logout]11-Check type value equal to unknown \", function () {\r",
+									"    pm.expect( JSON.parse(responseBody).type).to.be.equal('unknown')\r",
+									"\r",
+									"});\r",
+									"//Check type is includes letters only\r",
+									"pm.test(\"[3.User][3.6Logout]12-Check type is includes letters only\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.match(/^[a-zA-Z]+$/)\r",
+									"});\r",
+									"\r",
+									"//check response body contain message property \r",
+									"pm.test(\"[3.User][3.6Logout]13- Check respose schema contain message property\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"message\")\r",
+									"});\r",
+									"//check message is not null\r",
+									"pm.test(\"[3.User][3.6Logout]14- Check message is not null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null)\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(undefined)\r",
+									"});\r",
+									"//check message value is string/number (data type)\r",
+									"pm.test(\"[3.User][3.6Logout]15- Check message is string/data type \", function () {\r",
+									"    pm.expect(typeof JSON.parse(responseBody).message).to.be.equal('string')\r",
+									"});\r",
+									"//check message value is contain \"user session\"\r",
+									"pm.test(\"[3.User][3.6Logout]16- Check message conaton user id  \", function () {\r",
+									"    pm.expect( JSON.parse(responseBody).message).to.contains(\"ok\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.8 Create user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateRandomUser() {\r",
+									" return {\r",
+									"    id: Math.floor(Math.random() * 1000000),\r",
+									"    username: Math.random().toString(36).substring(2, 10),\r",
+									"    firstName: Math.random().toString(36).substring(2, 10),\r",
+									"    lastName: Math.random().toString(36).substring(2, 10),\r",
+									"    email: Math.random().toString(36).substring(2, 10) + '@' + Math.random().toString(36).substring(2, 10) + '.com',\r",
+									"    password: Math.random().toString(36).substring(2, 10),\r",
+									"    phone: Math.random().toString().substring(2, 12),\r",
+									"    userStatus: Math.floor(Math.random() * 2)\r",
+									" };\r",
+									"}\r",
+									"console.log(generateRandomUser());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('username', JSON.parse(request.data).username);\r",
+									"pm.collectionVariables.set('UserID', JSON.parse(responseBody).message);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Check response Schema----------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].1.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('message');\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].2.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('type');\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].3.Check response Schema contain property', function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property('code');\r",
+									"});\r",
+									"//Check Message------------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].4.Check message to contain numbers', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.match(/[0-9]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].5.Check message greaterThan 2 digits', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message.length).to.be.greaterThan(2);\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].6.Check message not contain letters  ', function () {\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"//Check response not null--------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].7.Check code not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].8.Check type not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.not.equal(null);\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].9.Check message not null ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).message).to.not.equal(null);\r",
+									"});\r",
+									"//Check Code-----------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].10.Check code to not match letters ', function (){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.not.match(/[A-Za-z]/);\r",
+									"});\r",
+									"pm.test('[3.User].[3.8 Add New User].11.Check code is a number', function(){\r",
+									"    pm.expect(JSON.parse(responseBody).code).to.be.a('Number');\r",
+									"});\r",
+									"//check type is a string---------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].12.Check type is a number', function(){\r",
+									"    pm.expect(JSON.parse(responseBody).type).to.be.a('string');\r",
+									"});\r",
+									"//Check request body property-----------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].13.check request body contains id', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].14.Check id is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).id).to.be.a('string');\r",
+									"});\r",
+									"//Username--------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].15.Check request body contains username', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('username');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].16.Check request body username is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).username).to.be.a('string');\r",
+									"});\r",
+									"//FirstName-------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].17.Check request body contains firstName', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('firstName');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].18.Check request body firstName is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).firstName).to.be.a('string');\r",
+									"});\r",
+									"//lastName--------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].19.Check request body contains lastName', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('firstName');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].20.Check request body lastName is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).lastName).to.be.a('string');\r",
+									"});\r",
+									"//EMail----------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].21.Check request body contains email', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('email');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].22.Check request body email is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).email).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].23.Check request body email matches special characters', function () {\r",
+									" pm.expect(JSON.parse(request.data).email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/);\r",
+									"});\r",
+									"//check password--------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].24.Check request body contains password', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('password');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].25.Check request body password is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).password).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].26.Check request body password matches special characters', function () {\r",
+									" pm.expect(JSON.parse(request.data).password).to.match(/^(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}$/);\r",
+									"});\r",
+									"//check phone-----------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].27.Check request body contains phone', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('phone');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].28.Check request body phone is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).phone).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].29.Check request body phone matches special characters', function () {\r",
+									" pm.expect(JSON.parse(request.data).phone).to.match(/^\\+?([0-9]{1,3})?[-. ]?([0-9]{1,4})?[-. ]?([0-9]{1,9})$/);\r",
+									"});\r",
+									"//Check userStatus---------------------------------------------------------------------------------\r",
+									"pm.test('[3.User].[3.8 Add New User].30.Check request body contains userStatus', function () {\r",
+									" pm.expect(JSON.parse(request.data)).to.have.property('userStatus');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].31.Check request body userStatus is a string', function () {\r",
+									" pm.expect(JSON.parse(request.data).userStatus).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('[3.User].[3.8 Add New User].32.Check request body userStatus matches special characters', function () {\r",
+									" pm.expect(JSON.parse(request.data).userStatus).to.match(/^\\d{3}$/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n  \"id\": \"{{UserID}}\",\n  \"username\": \"{{User}}\",\n  \"firstName\": \"{{First}}\",\n  \"lastName\": \"{{Last}}\",\n  \"email\": \"{{Email}}\",\n  \"password\": \"{{PASS}}\",\n  \"phone\": \"{{Phone}}\",\n  \"userStatus\": \"{{UserSt}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "This can only be done by the logged in user."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2"
+		},
+		{
+			"key": "randomid",
+			"value": 972
+		},
+		{
+			"key": "randid",
+			"value": 752
+		},
+		{
+			"key": "name1",
+			"value": "gaTVsasFIh"
+		},
+		{
+			"key": "name2",
+			"value": "IRqHnwYU"
+		},
+		{
+			"key": "name3",
+			"value": "QACdPhyuH"
+		},
+		{
+			"key": "status",
+			"value": "unavailable"
+		},
+		{
+			"key": "CTID",
+			"value": 577
+		},
+		{
+			"key": "TAGID",
+			"value": 921
+		},
+		{
+			"key": "CTNAME",
+			"value": "MDvSzgLQd"
+		},
+		{
+			"key": "PHNAME",
+			"value": "VKGzBMJy"
+		},
+		{
+			"key": "TAGNAME",
+			"value": "dLPqquvR"
+		},
+		{
+			"key": "rphoto",
+			"value": "https://i.imgur.com/pftwaw2.png"
+		},
+		{
+			"key": "name",
+			"value": "ticiSCHL"
+		},
+		{
+			"key": "PetID",
+			"value": 9223372016900020000,
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": 9223372036854776000
+		},
+		{
+			"key": "IdOrder",
+			"value": 9223372016900014000
+		},
+		{
+			"key": "User",
+			"value": "qwqexprx"
+		},
+		{
+			"key": "First",
+			"value": "edetnhovaz"
+		},
+		{
+			"key": "Last",
+			"value": "eatbqhlqo"
+		},
+		{
+			"key": "UserID",
+			"value": "222"
+		},
+		{
+			"key": "UserSt",
+			"value": 905
+		},
+		{
+			"key": "Email",
+			"value": "hfgqbx44db@b4uhw4.org"
+		},
+		{
+			"key": "PASS",
+			"value": "PE6(|@n}R"
+		},
+		{
+			"key": "Phone",
+			"value": "60602280199"
+		},
+		{
+			"key": "quantity",
+			"value": 52
+		},
+		{
+			"key": "shipdate",
+			"value": "2026-03-26T10:09:29.339Z"
+		},
+		{
+			"key": "orderstatus",
+			"value": "placed"
+		},
+		{
+			"key": "Complete",
+			"value": false
+		},
+		{
+			"key": "UserName",
+			"value": "onsllfza"
+		},
+		{
+			"key": "FirstNA",
+			"value": "gyhhgikxvx"
+		},
+		{
+			"key": "LastNA",
+			"value": "gnczpdexog"
+		},
+		{
+			"key": "UserStatus",
+			"value": 502
+		},
+		{
+			"key": "Mail",
+			"value": "3mq4x2jojt@gybzr8.com"
+		},
+		{
+			"key": "Secured",
+			"value": "3?lS*unAa:suZ4"
+		},
+		{
+			"key": "Call",
+			"value": "03255490434"
+		},
+		{
+			"key": "USER",
+			"value": "cjamqyykf"
+		},
+		{
+			"key": "FIRST",
+			"value": "kmmodxzc"
+		},
+		{
+			"key": "LAST",
+			"value": "omgqgwsx"
+		},
+		{
+			"key": "USERID",
+			"value": 361
+		},
+		{
+			"key": "USERSt",
+			"value": 380
+		},
+		{
+			"key": "MAIL",
+			"value": "6wfve6whpg@qq52je.org"
+		},
+		{
+			"key": "Pass",
+			"value": "g?b[t>:FsW4"
+		},
+		{
+			"key": "PHONE",
+			"value": "36043931040"
+		},
+		{
+			"key": "UserN",
+			"value": "pdmdhdly"
+		},
+		{
+			"key": "FirstN",
+			"value": "batkvgsuh"
+		},
+		{
+			"key": "LastN",
+			"value": "nggyotwm"
+		},
+		{
+			"key": "UseRID",
+			"value": 264
+		},
+		{
+			"key": "UseRSt",
+			"value": 553
+		},
+		{
+			"key": "EMAIL",
+			"value": "czpg8zknhc@ay6ahn.net"
+		},
+		{
+			"key": "Code",
+			"value": "*#Lv8k#z}s-0"
+		},
+		{
+			"key": "Content",
+			"value": "26334856606"
+		},
+		{
+			"key": "create",
+			"value": null
+		},
+		{
+			"key": "update",
+			"value": null
+		},
+		{
+			"key": "categoryName",
+			"value": "MDvSzgLQd"
+		},
+		{
+			"key": "PHOTOURL",
+			"value": [
+				"https://i.imgur.com/pftwaw2.png"
+			]
+		},
+		{
+			"key": "NAME",
+			"value": "VKGzBMJy"
+		},
+		{
+			"key": "CTID_update",
+			"value": 659
+		},
+		{
+			"key": "TAGID_update",
+			"value": 189
+		},
+		{
+			"key": "status_update",
+			"value": "available"
+		},
+		{
+			"key": "CATName_update",
+			"value": "kighacyox"
+		},
+		{
+			"key": "TagName_update",
+			"value": "cqhxrsybf"
+		},
+		{
+			"key": "DogName_update",
+			"value": "dvpwrcqi"
+		},
+		{
+			"key": "URLS_update",
+			"value": "https://picsum.photos/342/913"
+		},
+		{
+			"key": "NameUpdate",
+			"value": "kBvKZCPWKx"
+		},
+		{
+			"key": "StatusUpdate",
+			"value": "available"
+		},
+		{
+			"key": "orderid",
+			"value": 8425479461354993000
+		},
+		{
+			"key": "username",
+			"value": "qwqexprx"
+		}
+	]
+}
